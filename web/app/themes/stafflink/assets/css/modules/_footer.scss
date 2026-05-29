@@ -1,0 +1,151 @@
+@use '../variables' as *;
+
+.footer {
+	font-size: $font-size-14;
+	color: $color-text-primary;
+	line-height: 1.68;
+
+	.main {
+		background-color: $color-bg-footer;
+		padding-top: 2.688rem;
+		padding-bottom: 1.688rem;
+	}
+
+	.heading {
+		font-weight: $font-weight-semibold;
+		margin-bottom: 1.25rem;
+		font-size: $font-size-14;
+	}
+
+	.content {
+		line-height: 1.68;
+	}
+
+	.links {
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			columns: 2;
+		}
+
+		a {
+			color: $color-text-primary;
+			text-decoration: none;
+			transition: color 0.2s ease;
+
+			&:hover {
+				color: $color-primary;
+			}
+		}
+	}
+
+	.socials {
+		margin-top: 2.688rem;
+		text-align: center;
+
+		.btn-social {
+			display: flex;
+			align-items: center;
+			gap: 1.313rem;
+			width: 10.813rem;
+			padding: 0.5rem 1.43rem;
+			background: $color-dark;
+			color: $color-white;
+			border-radius: 6.25rem;
+			text-decoration: none;
+
+			&:hover {
+				background-color: $color-primary;
+				color: $color-white;	
+				text-decoration: none;
+			}
+		}
+	}
+
+	.bottom {
+		background-color: $color-bg-footer-bottom;
+		padding: 0.5rem 0;
+
+		.wrapper {
+			display: flex;
+			justify-content: space-between;
+			font-weight: $font-weight-normal;
+			font-size: $font-size-12;
+			color: $color-text-secondary;
+		}
+
+		p{
+			margin: 0;
+		}
+	}
+}
+
+.scroll-to-top {
+	position: fixed;
+	right: 1.25rem;
+	bottom: 1.25rem;
+	z-index: 20;
+	display: inline-flex;
+	width: 2.75rem;
+	height: 2.75rem;
+	align-items: center;
+	justify-content: center;
+	border: 0;
+	border-radius: $border-radius-circle;
+	background: $color-primary;
+	color: $color-white;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.2s ease, transform 0.2s ease;
+	transform: translateY(0.5rem);
+
+	&.is-visible {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translateY(0);
+	}
+
+	i {
+		font-size: $font-size-25;
+		line-height: 1;
+	}
+}
+
+
+@media (max-width: 767.98px) {
+	.footer {
+		position: relative;
+		z-index: 2;
+
+		.content {
+			margin-bottom: 1.562rem;
+		}
+
+		.links {
+			ul {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				column-gap: 1.25rem;
+				row-gap: 0.35rem;
+				columns: unset;
+			}
+		}
+
+		.bottom {
+			.wrapper {
+				flex-direction: column;
+				gap: 0.5rem;
+				text-align: center;
+			}
+		}
+
+		.socials {
+			margin-top: 1.562rem;
+
+			.btn-social {
+				width: 100%;
+			}
+		}
+	}
+}

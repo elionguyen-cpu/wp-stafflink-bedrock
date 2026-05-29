@@ -1,0 +1,28 @@
+@use '../variables' as *;
+
+.breadcrumb-wrapper {
+	--bs-breadcrumb-divider: '-';
+	margin-top: 7.687rem;
+	margin-bottom: 0.1rem;
+	line-height: 1.54;
+	font-size: $font-size-14;
+
+	a {
+		color: $color-text-breadcrumb;
+		transition: color 0.2s ease;
+		text-decoration: none;
+
+		&:hover {
+			color: $color-primary;
+		}
+	}
+
+	.active {
+		color: $color-primary;
+	}
+
+	ol {
+		padding: 0;
+		margin: 0;
+	}
+}

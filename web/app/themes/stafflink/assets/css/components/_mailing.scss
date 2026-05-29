@@ -1,0 +1,29 @@
+@use 'sass:color';
+@use '../variables' as *;
+
+.mailing-card {
+	position: fixed;
+	right: -3.5rem;
+	top: 50%;
+	transform: translateY(-50%) rotate(270deg);
+	z-index: 10;
+}
+
+.btn-mailing {
+	display: inline-flex;
+	gap: 0.5rem;
+	background: $color-primary;
+	color: $color-white;
+	text-decoration: none;
+	padding: 1.125rem;
+	border-radius: 0.625rem 0.625rem 0 0;
+	cursor: pointer;
+	font-weight: $font-weight-bold;
+	font-size: $font-size-18;
+	line-height: 1;
+
+	&:hover {
+		background: color.adjust($color-primary, $lightness: -10%);
+		color: $color-white;
+	}
+}

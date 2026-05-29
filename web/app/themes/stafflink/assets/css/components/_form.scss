@@ -1,0 +1,335 @@
+@use '../variables' as *;
+
+.single-job-sidebar {
+	.apply-job {
+		overflow: hidden;
+		border-radius: $border-radius-xs;
+		background: $color-white;
+		box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.14);
+
+		&-heading {
+			display: flex;
+			gap: 1rem;
+			align-items: center;
+			padding: 1.5rem 1.25rem 1rem;
+
+			h2 {
+				margin: 0;
+				color: $color-text-primary;
+				font-size: $font-size-16;
+				font-weight: $font-weight-semibold;
+			}
+		}
+
+		&-icon {
+			display: inline-flex;
+			width: 3.125rem;
+			height: 3.125rem;
+			flex: 0 0 3.125rem;
+			align-items: center;
+			justify-content: center;
+			border-radius: $border-radius-circle;
+			background: $color-primary;
+			color: $color-white;
+
+			i {
+				font-size: $font-size-20;
+				line-height: 1;
+			}
+		}
+	}
+
+	.job-apply-form {
+		.wpuf-form-add {
+			margin: 0;
+		}
+
+		.wpuf-form {
+			display: block;
+			margin: 0;
+			padding: 0;
+
+			.wpuf-label,
+			.required {
+				display: none !important;
+			}
+
+			.wpuf-fields {
+				width: 100% !important;
+				min-width: 0;
+			}
+
+			.select2-container {
+				min-width: 0;
+			}
+
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			input:not([type="hidden"]):not([type="submit"]),
+			select,
+			textarea {
+				width: 100%;
+				height: 2.5rem;
+				min-height: 2.5rem;
+				padding: 0 1rem;
+				border: 1px solid $color-border;
+				border-radius: $border-radius-xs;
+				background: $color-white;
+				color: $color-text-primary;
+				font-size: $font-size-14;
+				font-weight: $font-weight-normal;
+				line-height: 2.5rem;
+				box-shadow: none;
+				transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+				&::placeholder {
+					color: $color-text-form;
+					opacity: 1;
+				}
+
+				&:focus {
+					border-color: $color-primary;
+					box-shadow: 0 0 0 0.2rem rgba($color-primary, 0.1);
+					outline: none;
+				}
+			}
+
+			select {
+				appearance: none;
+				padding-right: 2.4rem;
+				background-image: url("data:image/svg+xml,%3Csvg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L7 7L13 1' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+				background-repeat: no-repeat;
+				background-position: right 1rem center;
+				background-size: 0.875rem auto;
+			}
+		}
+
+		.apply-group {
+			padding: 1rem 1.25rem 1.125rem;
+			border-bottom: 1px solid $color-border;
+
+			.wpuf-el,
+			.wpuf-fields,
+			.select2-container {
+				min-width: 0;
+			}
+
+			&-title {
+				margin: 0 0 0.875rem;
+				color: $color-primary;
+				font-size: $font-size-14;
+				font-weight: $font-weight-normal;
+				line-height: 1.2;
+			}
+
+			&-fields > .wpuf-el,
+			&-fields > .resume-upload,
+			&-fields > .field-pair {
+				margin-bottom: 0.75rem;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+
+			&.apply-group-contact {
+				padding: 0 1rem 1rem;
+			}
+
+			.identification-row {
+				display: grid;
+				grid-template-columns: 5.75rem minmax(0, 1fr);
+				gap: 0.5rem;
+				margin-bottom: 0.35rem;
+
+				> .wpuf-el {
+					margin: 0;
+					min-width: 0;
+				}
+
+				.select2-selection__rendered {
+					padding-left: 0.75rem;
+					padding-right: 1.65rem;
+				}
+
+				.select2-selection__arrow {
+					width: 1.65rem;
+				}
+			}
+
+			.identification-help {
+				margin: 0 0 0.75rem;
+				color: $color-text-form;
+				font-size: $font-size-12;
+				line-height: 1.35;
+
+				.wpuf-help,
+				.wpuf-help-block,
+				.wpuf-help-text,
+				.wpuf-field-help,
+				.form-text,
+				.help,
+				.description {
+					display: block;
+					margin: 0;
+					color: inherit;
+					font-size: inherit;
+					line-height: inherit;
+				}
+			}
+
+			&.apply-group-info {
+				padding: 0 1rem 1rem;
+				margin-top: 1rem;
+
+				.field-pair {
+					display: grid;
+					grid-template-columns: minmax(0, 1fr) 4.75rem;
+					gap: 0.5rem;
+					margin-bottom: 0.75rem;
+
+					> .wpuf-el {
+						min-width: 0;
+						margin: 0;
+					}
+
+					&-main {
+						grid-column: 1;
+					}
+
+					&-suffix {
+						grid-column: 2;
+					}
+
+					.wpuf-fields {
+						min-width: 0;
+					}
+
+					.select2-selection__rendered {
+						padding-left: 0.75rem;
+						padding-right: 1.65rem;
+					}
+
+					.select2-selection__arrow {
+						width: 1.65rem;
+					}
+				}
+			}
+
+			&.apply-group-attach {
+				padding: 1rem 1rem 1.5rem;
+				border-bottom: 0;
+
+				.apply-group-fields > .wpuf-el,
+				.apply-group-fields > .resume-upload {
+					margin-bottom: 0.75rem;
+				}
+			}
+		}
+
+		.file-upload {
+			display: flex;
+			margin: 0;
+
+			.file-label {
+				display: block;
+				flex: 1 1 auto;
+				height: 2.5rem;
+				min-width: 0;
+				margin: 0;
+				border-color: $color-border;
+				border-radius: $border-radius-xs 0 0 $border-radius-xs;
+				color: $color-text-form;
+				font-size: $font-size-14;
+				font-weight: $font-weight-normal;
+				line-height: 2.5rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				cursor: pointer;
+				padding: 0 0 0 0.562rem;
+			}
+
+			.input-group-text {
+				display: inline-flex;
+				width: 5.25rem;
+				flex: 0 0 5.25rem;
+				height: 2.5rem;
+				align-items: center;
+				justify-content: center;
+				border: 1px solid $color-primary;
+				border-radius: $border-radius-xs;
+				background: $color-primary;
+				color: $color-white;
+				font-size: $font-size-14;
+				font-weight: $font-weight-normal;
+				cursor: pointer;
+			}
+
+			&.has-file {
+				.file-label {
+					color: $color-text-primary;
+				}
+			}
+		}
+
+		.resume-upload-message,
+		.photo-upload-message {
+			display: block;
+			margin-top: 0.35rem;
+			color: $color-text-form;
+			font-size: $font-size-12;
+
+			&.is-error {
+				color: $color-primary;
+			}
+		}
+
+		.wpuf-submit {
+			display: block;
+			margin: 0;
+			padding: 0;
+
+			.wpuf-fields {
+				width: 100% !important;
+			}
+
+			input[type="submit"] {
+				display: flex;
+				width: 100%;
+				height: 3.5rem;
+				align-items: center;
+				justify-content: center;
+				border: 0;
+				border-radius: 0 0 $border-radius-xs $border-radius-xs;
+				background: $color-primary;
+				color: $color-white;
+				font-size: $font-size-14;
+				font-weight: $font-weight-semibold;
+				line-height: 1;
+				cursor: pointer;
+				transition: background-color 0.2s ease;
+
+				&:hover,
+				&:focus {
+					background: $color-dark;
+				}
+
+				&:disabled {
+					cursor: not-allowed;
+					opacity: 0.7;
+				}
+			}
+		}
+
+		.wpuf-success {
+			margin: 0 1.25rem 1rem;
+			color: $color-primary;
+			font-size: $font-size-14;
+		}
+	}
+}

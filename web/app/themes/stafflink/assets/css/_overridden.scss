@@ -1,0 +1,23 @@
+@use 'variables' as *;
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: "Lato", sans-serif;
+	background-color: $color-white;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	font-size: 16px;
+	overflow-x: hidden;
+}
+
+.container {
+	max-width: 1236px;
+
+	@media (max-width: 767.98px) {
+		padding: 0 1.562rem 1rem;
+	}
+}

@@ -1,0 +1,116 @@
+@use '../variables' as *;
+
+.header {
+	background-color: $color-white;
+	transition: .3s padding linear, .05s background-color;
+
+	&.fixed {
+		padding-top: 0;
+		background-color: $color-white;
+	}
+
+	.navbar {
+		padding-bottom: 0;
+
+		.navbar-brand {
+			margin-bottom: 1.25rem;
+			padding: 0;
+
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+
+		.navbar-nav {
+			margin-bottom: 1.687rem;
+			--bs-navbar-nav-link-padding-x: 0;
+
+			.nav-link {
+				color: $color-text-secondary;
+				font-size: $font-size-14;
+				padding: 0;
+				transition: color 0.2s ease;
+				text-transform: uppercase;
+
+				&.active {
+					color: $color-primary;
+				}
+
+				&:hover {
+					color: $color-primary;
+				}
+			}
+		}
+	}
+
+	@media (min-width: 768px) {
+		.navbar-nav {
+			gap: 3.437rem;
+		}
+	}
+
+	@media (max-width: 767.98px) {
+		.offcanvas {
+			&.offcanvas-end {
+				--bs-offcanvas-width: 62%;
+				top: 6.15rem;
+				bottom: 0;
+			}
+
+			&-body {
+				padding: 2rem 1.5rem;
+			}
+		}
+
+		.navbar-nav {
+			width: 100%;
+			align-items: flex-end;
+			text-align: right;
+			gap: 2.437rem;
+
+			.nav-item {
+				margin-bottom: 1rem;
+			}
+
+			.nav-link {
+				font-size: 0.9rem;
+				letter-spacing: 0.05rem;
+			}
+		}
+
+		.navbar-toggler {
+			border: none;
+			padding: 0;
+			width: 2.3125rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 6px;
+
+			&:focus {
+				box-shadow: none;
+			}
+
+			span {
+				display: block;
+				width: 24px;
+				height: 2px;
+				background-color: $color-primary;
+				transition: all 0.3s ease;
+			}
+
+			&.active {
+				span {
+					background-color: $color-text-primary;
+				}
+			}
+		}
+	}
+}
+
+body.admin-bar {
+  .header {
+    padding-top: 1.5rem;
+  }
+}

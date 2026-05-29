@@ -1,0 +1,16 @@
+@use '../variables' as *;
+
+.page-banner {
+	margin-top: 5.687rem;
+	width: 100%;
+
+	&-image {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	+ .breadcrumb-wrapper {
+		margin-top: 1rem;
+	}
+}
