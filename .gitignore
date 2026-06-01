@@ -34,4 +34,5 @@ phpunit.xml
 wp-cli.local.yml
 
 structure.md
+structure-stafflink.md
 .idea/

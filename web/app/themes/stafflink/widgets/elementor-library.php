@@ -9,6 +9,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! function_exists( 'elementor_template' ) ) {
+	/**
+	 * Render an Elementor saved template.
+	 *
+	 * @param int $template_id Elementor template post ID.
+	 */
+	function elementor_template( $template_id ) {
+		$template_id = absint( $template_id );
+
+		if ( ! $template_id || ! class_exists( '\Elementor\Plugin' ) ) {
+			return;
+		}
+
+		echo \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $template_id );
+	}
+}
+
 class ElementorLibraryWidget extends WP_Widget {
 	/**
 	 * Register widget.
@@ -33,12 +50,12 @@ class ElementorLibraryWidget extends WP_Widget {
 	public function widget( $args, $instance ) {
 		$template_id = isset( $instance['template_id'] ) ? absint( $instance['template_id'] ) : 0;
 
-		if ( ! $template_id || ! class_exists( '\Elementor\Plugin' ) ) {
+		if ( ! $template_id || ! function_exists( 'elementor_template' ) ) {
 			return;
 		}
 
 		echo $args['before_widget'];
-		echo \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $template_id );
+		elementor_template( $template_id );
 		echo $args['after_widget'];
 	}
 

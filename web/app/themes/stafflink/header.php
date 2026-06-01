@@ -24,5 +24,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<?php get_template_part( 'template-parts/header-default' ); ?>
+<?php
+$header_template_id = get_theme_mod( 'header_template_id', 0 );
+
+if ( $header_template_id && function_exists( 'elementor_template' ) ) {
+	?>
+	<header id="sticky-header" class="header fixed-top">
+		<?php elementor_template( $header_template_id ); ?>
+	</header>
+	<?php
+}
+?>
 <section class="main">
