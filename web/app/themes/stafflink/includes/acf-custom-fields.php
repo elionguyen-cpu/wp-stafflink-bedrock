@@ -18,8 +18,8 @@ add_action(
 
 		acf_add_local_field_group(
 			array(
-				'key'                   => 'group_job_detail',
-				'title'                 => __( 'Job Detail', TEXT_DOMAIN ),
+				'key'                   => 'group_job',
+				'title'                 => __( 'Job', TEXT_DOMAIN ),
 				'fields'                => array(
 					array(
 						'key'   => 'field_job_consultant_code',

@@ -17,7 +17,6 @@ require_once get_stylesheet_directory() . '/includes/acf-custom-fields.php';
 require_once get_stylesheet_directory() . '/includes/elementor.php';
 require_once get_stylesheet_directory() . '/includes/jobseekers.php';
 require_once get_stylesheet_directory() . '/includes/job-apply-form.php';
-require_once get_stylesheet_directory() . '/includes/breadcrumbs.php';
 
 add_action( 'after_setup_theme', function () {
 	load_theme_textdomain( TEXT_DOMAIN, get_template_directory() . '/languages' );

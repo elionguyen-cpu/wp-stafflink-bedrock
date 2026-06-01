@@ -32,7 +32,7 @@ add_action(
 			'stafflink_apply_job_form_id',
 			array(
 				'label'       => __( 'Apply Job Form', TEXT_DOMAIN ),
-				'description' => __( 'Choose the WP User Frontend form used on jobseekers detail pages.', TEXT_DOMAIN ),
+				'description' => __( 'Choose the form.', TEXT_DOMAIN ),
 				'section'     => 'stafflink_jobseekers',
 				'type'        => 'select',
 				'choices'     => get_jobseekers_form_choices(),

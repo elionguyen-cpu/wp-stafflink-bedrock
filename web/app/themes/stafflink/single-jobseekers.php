@@ -23,16 +23,13 @@ while ( have_posts() ) :
 	<div class="container">
 		<section class="single-job">
 			<h2 class="single-job-heading"><?php esc_html_e( 'Job Detail', TEXT_DOMAIN ); ?></h2>
-
 			<div class="single-job-layout">
 				<div class="single-job-main">
 					<a class="single-job-back" href="<?php echo esc_url( get_jobseekers_page_url() ); ?>">
 						<i class="bi bi-chevron-left" aria-hidden="true"></i>
 						<span><?php esc_html_e( 'Back to Listing', TEXT_DOMAIN ); ?></span>
 					</a>
-
 					<h1 class="single-job-title"><?php the_title(); ?></h1>
-
 					<div class="single-job-info">
 						<?php
 						foreach ( get_job_detail_items( get_the_ID() ) as $item ) :
@@ -46,13 +43,11 @@ while ( have_posts() ) :
 							</div>
 						<?php endforeach; ?>
 					</div>
-
 					<div class="single-job-sections">
 						<?php render_job_detail_section( __( 'Job Description', TEXT_DOMAIN ), get_job_field_value( 'job_description', get_the_ID() ) ); ?>
 						<?php render_job_detail_section( __( 'Job Responsibilities', TEXT_DOMAIN ), get_job_field_value( 'job_responsibilities', get_the_ID() ) ); ?>
 						<?php render_job_detail_section( __( 'Requirements', TEXT_DOMAIN ), get_job_field_value( 'job_requirements', get_the_ID() ) ); ?>
 					</div>
-
 					<?php if ( $post_content ) : ?>
 						<div class="single-job-content">
 							<?php the_content(); ?>
@@ -65,7 +60,6 @@ while ( have_posts() ) :
 							<span class="apply-job-icon"><i class="bi bi-calendar3" aria-hidden="true"></i></span>
 							<h2><?php esc_html_e( 'Apply This Job', TEXT_DOMAIN ); ?></h2>
 						</div>
-
 						<?php if ( $apply_form ) : ?>
 							<div class="job-apply-form">
 								<?php echo $apply_form; ?>
