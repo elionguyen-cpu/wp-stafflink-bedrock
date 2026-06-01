@@ -11,24 +11,14 @@ if ( ! is_page() || is_front_page() ) {
 	return;
 }
 
-$banner_image = function_exists( 'get_field' ) ? get_field( 'page_banner_image' ) : null;
+$banner_image_id = get_post_thumbnail_id();
 
-if ( empty( $banner_image ) ) {
+if ( ! $banner_image_id ) {
 	return;
 }
 
-$banner_url = '';
-$banner_alt = '';
-
-if ( is_array( $banner_image ) ) {
-	$banner_url = $banner_image['url'] ?? '';
-	$banner_alt = $banner_image['alt'] ?? '';
-} elseif ( is_numeric( $banner_image ) ) {
-	$banner_url = wp_get_attachment_image_url( (int) $banner_image, 'full' );
-	$banner_alt = get_post_meta( (int) $banner_image, '_wp_attachment_image_alt', true );
-} elseif ( is_string( $banner_image ) ) {
-	$banner_url = $banner_image;
-}
+$banner_url = wp_get_attachment_image_url( $banner_image_id, 'full' );
+$banner_alt = get_post_meta( $banner_image_id, '_wp_attachment_image_alt', true );
 
 if ( empty( $banner_url ) ) {
 	return;

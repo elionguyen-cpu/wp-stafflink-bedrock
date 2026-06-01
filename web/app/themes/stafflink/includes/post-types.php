@@ -16,11 +16,11 @@ add_action(
 			POST_TYPE_JOB,
 			array(
 				'labels'       => array(
-					'name'          => __( 'Jobs', TEXT_DOMAIN ),
-					'singular_name' => __( 'Job', TEXT_DOMAIN ),
-					'add_new_item'  => __( 'Add New Job', TEXT_DOMAIN ),
-					'edit_item'     => __( 'Edit Job', TEXT_DOMAIN ),
-					'menu_name'     => __( 'Jobs', TEXT_DOMAIN ),
+					'name'          => __( 'Jobseekers', TEXT_DOMAIN ),
+					'singular_name' => __( 'Jobseeker', TEXT_DOMAIN ),
+					'add_new_item'  => __( 'Add New Jobseeker', TEXT_DOMAIN ),
+					'edit_item'     => __( 'Edit Jobseeker', TEXT_DOMAIN ),
+					'menu_name'     => __( 'Jobseekers', TEXT_DOMAIN ),
 				),
 				'public'       => true,
 				'has_archive'  => false,

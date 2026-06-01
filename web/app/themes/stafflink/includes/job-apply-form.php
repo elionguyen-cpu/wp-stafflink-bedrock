@@ -482,7 +482,7 @@ function attach_application_job( $post_id ) {
 	}
 
 	update_post_meta( $post_id, 'applied_job_id', $job_id );
-	update_post_meta( $post_id, '_applied_job_id', 'field_application_applied_job' );
+	update_post_meta( $post_id, '_applied_job_id', 'field_applied_job' );
 }
 
 add_filter( 'manage_' . POST_TYPE_JOB_APPLICATION . '_posts_columns', 'add_application_columns' );
