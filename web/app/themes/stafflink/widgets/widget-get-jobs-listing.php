@@ -65,6 +65,8 @@ class WidgetGetJobListing extends WP_Widget {
 
 		$locations  = get_terms( array( 'taxonomy' => TAX_TYPE_JOB_LOCATION, 'hide_empty' => false ) );
 		$categories = get_terms( array( 'taxonomy' => TAX_TYPE_JOB_CATEGORY, 'hide_empty' => false ) );
+		$jobseekers_page     = get_page_by_path( 'jobseekers' );
+		$jobseekers_page_url = $jobseekers_page ? get_permalink( $jobseekers_page ) : home_url( '/jobseekers/' );
 
 		echo $args['before_widget']; 
 		?>
@@ -73,7 +75,7 @@ class WidgetGetJobListing extends WP_Widget {
 				<h1 class="jobseekers-heading"><?php echo esc_html( $title ); ?></h1>
 			<?php endif; ?>
 
-			<form class="jobseekers-filters" method="get" action="<?php echo esc_url( get_jobseekers_page_url() ); ?>">
+			<form class="jobseekers-filters" method="get" action="<?php echo esc_url( $jobseekers_page_url ); ?>">
 				<div class="jobseekers-field search-input">
 					<i class="bi bi-search" aria-hidden="true"></i>
 					<input class="form-control" type="search" name="job_search" value="<?php echo esc_attr( $search ); ?>" placeholder="<?php esc_attr_e( 'Search Job', TEXT_DOMAIN ); ?>">
@@ -98,7 +100,7 @@ class WidgetGetJobListing extends WP_Widget {
 				</div>
 
 				<div class="jobseekers-actions">
-					<a href="<?php echo esc_url( get_jobseekers_page_url() ); ?>" aria-label="<?php esc_attr_e( 'Reset filters', TEXT_DOMAIN ); ?>">
+					<a href="<?php echo esc_url( $jobseekers_page_url ); ?>" aria-label="<?php esc_attr_e( 'Reset filters', TEXT_DOMAIN ); ?>">
 						<i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
 					</a>
 					<button type="submit" aria-label="<?php esc_attr_e( 'Search jobs', TEXT_DOMAIN ); ?>">
@@ -113,7 +115,12 @@ class WidgetGetJobListing extends WP_Widget {
 						<?php
 						while ( $query->have_posts() ) :
 							$query->the_post();
-							$job_location = get_job_terms_text( get_the_ID(), TAX_TYPE_JOB_LOCATION );
+							$job_locations = get_the_terms( get_the_ID(), TAX_TYPE_JOB_LOCATION );
+							$job_location  = '';
+
+							if ( ! empty( $job_locations ) && ! is_wp_error( $job_locations ) ) {
+								$job_location = implode( ', ', wp_list_pluck( $job_locations, 'name' ) );
+							}
 							?>
 							<article <?php post_class( 'job-card' ); ?>>
 								<a class="job-card-title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>

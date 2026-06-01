@@ -15,7 +15,6 @@ require_once get_stylesheet_directory() . '/includes/widgets.php';
 require_once get_stylesheet_directory() . '/includes/post-types.php';
 require_once get_stylesheet_directory() . '/includes/acf-custom-fields.php';
 require_once get_stylesheet_directory() . '/includes/elementor.php';
-require_once get_stylesheet_directory() . '/includes/jobseekers.php';
 require_once get_stylesheet_directory() . '/includes/job-apply-form.php';
 
 add_action( 'after_setup_theme', function () {

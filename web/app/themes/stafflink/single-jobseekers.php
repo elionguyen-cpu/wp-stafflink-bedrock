@@ -19,21 +19,56 @@ while ( have_posts() ) :
 
 	$post_content = trim( get_the_content() );
 	$apply_form   = get_apply_job_form();
+	$locations    = get_the_terms( get_the_ID(), TAX_TYPE_JOB_LOCATION );
+	$categories   = get_the_terms( get_the_ID(), TAX_TYPE_JOB_CATEGORY );
+	$location     = ( ! empty( $locations ) && ! is_wp_error( $locations ) ) ? implode( ', ', wp_list_pluck( $locations, 'name' ) ) : '';
+	$category     = ( ! empty( $categories ) && ! is_wp_error( $categories ) ) ? implode( ', ', wp_list_pluck( $categories, 'name' ) ) : '';
+	$job_details  = array(
+		array(
+			'label' => __( 'Consultant Code', TEXT_DOMAIN ),
+			'value' => get_field( 'job_consultant_code' ),
+		),
+		array(
+			'label' => __( 'Zone', TEXT_DOMAIN ),
+			'value' => $location,
+		),
+		array(
+			'label' => __( 'Job Type', TEXT_DOMAIN ),
+			'value' => get_field( 'job_type' ),
+		),
+		array(
+			'label' => __( 'Job Category', TEXT_DOMAIN ),
+			'value' => $category,
+		),
+		array(
+			'label' => __( 'Working Hours', TEXT_DOMAIN ),
+			'value' => get_field( 'job_working_hours' ),
+		),
+		array(
+			'label' => __( 'Salary', TEXT_DOMAIN ),
+			'value' => get_field( 'job_salary' ),
+		),
+	);
+	$job_sections = array(
+		__( 'Job Description', TEXT_DOMAIN )      => get_field( 'job_description' ),
+		__( 'Job Responsibilities', TEXT_DOMAIN ) => get_field( 'job_responsibilities' ),
+		__( 'Requirements', TEXT_DOMAIN )         => get_field( 'job_requirements' ),
+	);
 	?>
 	<div class="container">
 		<section class="single-job">
 			<h2 class="single-job-heading"><?php esc_html_e( 'Job Detail', TEXT_DOMAIN ); ?></h2>
 			<div class="single-job-layout">
 				<div class="single-job-main">
-					<a class="single-job-back" href="<?php echo esc_url( get_jobseekers_page_url() ); ?>">
+					<a class="single-job-back" href="<?php echo esc_url( wp_get_referer() ); ?>">
 						<i class="bi bi-chevron-left" aria-hidden="true"></i>
 						<span><?php esc_html_e( 'Back to Listing', TEXT_DOMAIN ); ?></span>
 					</a>
 					<h1 class="single-job-title"><?php the_title(); ?></h1>
 					<div class="single-job-info">
 						<?php
-						foreach ( get_job_detail_items( get_the_ID() ) as $item ) :
-							if ( '' === $item['value'] ) {
+						foreach ( $job_details as $item ) :
+							if ( '' === $item['value'] || null === $item['value'] ) {
 								continue;
 							}
 							?>
@@ -44,9 +79,16 @@ while ( have_posts() ) :
 						<?php endforeach; ?>
 					</div>
 					<div class="single-job-sections">
-						<?php render_job_detail_section( __( 'Job Description', TEXT_DOMAIN ), get_job_field_value( 'job_description', get_the_ID() ) ); ?>
-						<?php render_job_detail_section( __( 'Job Responsibilities', TEXT_DOMAIN ), get_job_field_value( 'job_responsibilities', get_the_ID() ) ); ?>
-						<?php render_job_detail_section( __( 'Requirements', TEXT_DOMAIN ), get_job_field_value( 'job_requirements', get_the_ID() ) ); ?>
+						<?php foreach ( $job_sections as $section_title => $section_content ) : ?>
+							<?php if ( $section_content ) : ?>
+								<div class="single-job-section">
+									<h3><?php echo esc_html( $section_title ); ?></h3>
+									<div class="single-job-text">
+										<?php echo wp_kses_post( $section_content ); ?>
+									</div>
+								</div>
+							<?php endif; ?>
+						<?php endforeach; ?>
 					</div>
 					<?php if ( $post_content ) : ?>
 						<div class="single-job-content">
