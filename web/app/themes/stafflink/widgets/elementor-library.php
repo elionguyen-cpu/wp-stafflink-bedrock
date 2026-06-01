@@ -37,9 +37,9 @@ class ElementorLibraryWidget extends WP_Widget {
 			return;
 		}
 
-		echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $template_id ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $args['before_widget'];
+		echo \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $template_id );
+		echo $args['after_widget'];
 	}
 
 	/**

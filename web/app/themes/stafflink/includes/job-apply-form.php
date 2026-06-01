@@ -9,6 +9,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+function get_apply_job_form_id() {
+	return absint( get_theme_mod( 'stafflink_apply_job_form_id', 0 ) );
+}
+
+function get_apply_job_form(): string {
+	$form_id = get_apply_job_form_id();
+
+	if ( ! $form_id ) {
+		return '';
+	}
+
+	return prepare_job_apply_form( do_shortcode( sprintf( '[wpuf_form id="%d"]', $form_id ) ) );
+}
+
 function prepare_job_apply_form( $form_html ) {
 	if ( empty( $form_html ) ) {
 		return '';
@@ -451,7 +465,7 @@ function handle_application_upload( $field_name, array $allowed_mimes, $missing_
 add_action( 'wpuf_add_post_after_insert', 'save_application_meta', 10, 4 );
 
 function save_application_meta( $post_id, $form_id, $form_settings, $meta_vars ) {
-	if ( 74 !== absint( $form_id ) || POST_TYPE_JOB_APPLICATION !== get_post_type( $post_id ) ) {
+	if ( get_apply_job_form_id() !== absint( $form_id ) || POST_TYPE_JOB_APPLICATION !== get_post_type( $post_id ) ) {
 		return;
 	}
 
@@ -528,7 +542,7 @@ function attach_application_upload( $post_id, $attachment_field, $url_field ) {
 add_filter( 'wpuf_add_post_redirect', 'keep_application_on_current_page', 10, 4 );
 
 function keep_application_on_current_page( $response, $post_id, $form_id, $form_settings ) {
-	if ( 74 !== absint( $form_id ) || POST_TYPE_JOB_APPLICATION !== get_post_type( $post_id ) ) {
+	if ( get_apply_job_form_id() !== absint( $form_id ) || POST_TYPE_JOB_APPLICATION !== get_post_type( $post_id ) ) {
 		return $response;
 	}
 

@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php
 	$header_script = get_theme_mod( 'header_script' );
 	if ( $header_script ) {
-		echo $header_script; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $header_script;
 	}
 	?>
 </head>

@@ -100,3 +100,13 @@ add_action(
 		);
 	}
 );
+
+add_action(
+	'add_meta_boxes',
+	function () {
+		remove_meta_box( 'wpuf-select-form', POST_TYPE_JOB, 'side' );
+		remove_meta_box( 'wpuf-post-lock', POST_TYPE_JOB, 'side' );
+		remove_meta_box( 'wpuf-custom-fields', POST_TYPE_JOB, 'normal' );
+	},
+	99
+);

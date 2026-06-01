@@ -10,5 +10,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( function_exists( 'get_breadcrumb' ) ) {
-	echo get_breadcrumb(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo get_breadcrumb();
 }

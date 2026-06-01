@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php
 $footer_script = get_theme_mod( 'footer_script' );
 if ( $footer_script ) {
-	echo $footer_script; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo $footer_script;
 }
 ?>
 </body>
